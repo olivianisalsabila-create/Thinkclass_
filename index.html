@@ -1,1 +1,759 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ThinkClass | Penguatan Nalar & Literasi Kritis</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --maroon: #800000;
+            --burgundy: #4d0000;
+            --coklat-susu: #D2B48C;
+            --cream-light: #FDFBF7;
+            --text-dark: #2c2c2c;
+            --white: #ffffff;
+            --gray-light: #f4f4f4;
+            --transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--cream-light);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .logo {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 8%;
+            background: var(--burgundy);
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-logo-img {
+            height: 40px;
+            width: auto;
+            border-radius: 4px;
+        }
+
+        .logo { font-size: 1.8rem; font-weight: bold; cursor: default; }
+        .logo span { color: var(--coklat-susu); }
+
+        nav ul { display: flex; list-style: none; align-items: center; }
+        nav ul li { margin-left: 25px; }
+        nav ul li a { 
+            color: white; 
+            text-decoration: none; 
+            font-weight: 600; 
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+        nav ul li a:hover { color: var(--coklat-susu); }
+
+        .btn-small {
+            background-color: var(--coklat-susu);
+            color: var(--burgundy) !important;
+            padding: 8px 18px;
+            border-radius: 4px;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            min-height: 90vh;
+            background: linear-gradient(rgba(77, 0, 0, 0.85), rgba(77, 0, 0, 0.85)), 
+                        url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=1600');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 40px 10%;
+        }
+
+        .hero h1 { font-size: 3.2rem; margin-bottom: 15px; line-height: 1.2; }
+        .hero h2 { 
+            font-size: 1.6rem; 
+            color: var(--coklat-susu); 
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400; 
+            margin-bottom: 20px; 
+            text-transform: none;
+            font-style: normal;
+        }
+        .hero p { font-size: 1.1rem; opacity: 0.95; margin-bottom: 35px; max-width: 800px; margin-left: auto; margin-right: auto; }
+
+        .btn-primary {
+            background-color: var(--maroon);
+            color: white;
+            padding: 16px 32px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 700;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .btn-primary:hover { background-color: #a00000; transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.3); }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid var(--coklat-susu);
+            color: var(--coklat-susu);
+            padding: 14px 32px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 700;
+            margin-left: 15px;
+            transition: var(--transition);
+        }
+        .btn-secondary:hover { background-color: var(--coklat-susu); color: var(--burgundy); transform: translateY(-5px); }
+
+        /* --- SECTION GENERIC --- */
+        section { padding: 80px 10%; }
+        .section-title { text-align: center; font-size: 2.5rem; color: var(--burgundy); margin-bottom: 50px; }
+        .section-title::after { content: ''; display: block; width: 50px; height: 4px; background: var(--coklat-susu); margin: 15px auto; }
+
+        /* --- TABS --- */
+        .tab-container { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.05); }
+        .tab-menu { display: flex; background: var(--gray-light); border-bottom: 1px solid #eee; overflow-x: auto; }
+        .tab-link {
+            padding: 20px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-weight: 700;
+            color: #777;
+            transition: 0.3s;
+            flex: 1;
+            min-width: 120px;
+        }
+        .tab-link.active { color: var(--maroon); background: white; border-bottom: 4px solid var(--maroon); }
+        .tab-content { padding: 40px; display: none; animation: fadeIn 0.5s ease; }
+        .tab-content.active { display: block; }
+        .tab-content h4 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 20px; color: var(--maroon); }
+
+        /* --- BENEFIT GRID --- */
+        .benefit-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 20px; }
+        .benefit-col { background: var(--gray-light); padding: 30px; border-radius: 10px; border-left: 5px solid var(--maroon); }
+        .benefit-col h5 { font-size: 1.2rem; margin-bottom: 15px; color: var(--burgundy); }
+
+        /* --- FOUNDER SECTION --- */
+        .founder-section { background: #fff; position: relative; }
+        .founder-grid { 
+            display: flex; 
+            justify-content: center; 
+            align-items: flex-start;
+            gap: 60px; 
+            flex-wrap: wrap; 
+            margin-top: 60px;
+        }
+
+        .founder-card {
+            perspective: 1500px;
+            text-align: center;
+            width: 280px;
+        }
+
+        .founder-frame {
+            position: relative;
+            width: 100%;
+            height: 380px;
+            background: #ffffff;
+            border-radius: 15px;
+            padding: 10px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: var(--transition);
+            transform-style: preserve-3d;
+            margin-bottom: 30px;
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .founder-image-container {
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #f0f0f0;
+        }
+
+        .founder-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .founder-card:hover .founder-frame {
+            transform: translateY(-10px);
+        }
+
+        .founder-info h4 {
+            font-size: 1.3rem;
+            color: var(--burgundy);
+            margin-bottom: 5px;
+        }
+
+        .founder-info span {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--coklat-susu);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* --- DOCUMENTATION --- */
+        .slider-wrapper { position: relative; max-width: 1000px; margin: 0 auto; overflow: hidden; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .slider-container { display: flex; transition: transform 0.5s ease; }
+        .slide { min-width: 100%; position: relative; }
+        .slide img { width: 100%; height: 500px; object-fit: cover; display: block; }
+        .slide-info { 
+            background: rgba(77, 0, 0, 0.9); color: white; padding: 15px; 
+            text-align: center; position: absolute; bottom: 0; width: 100%; 
+        }
+        .slider-nav { 
+            position: absolute; top: 50%; transform: translateY(-50%); width: 100%; 
+            display: flex; justify-content: space-between; padding: 0 20px; pointer-events: none;
+        }
+        .slider-btn { 
+            background: white; border: none; width: 50px; height: 50px; border-radius: 50%; 
+            cursor: pointer; pointer-events: auto; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2); transition: 0.3s;
+        }
+        .slider-btn:hover { background: var(--maroon); color: white; }
+
+        /* --- TESTIMONI --- */
+        .testi-container { max-width: 800px; margin: 0 auto; text-align: center; }
+        .testi-card { background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: opacity 0.3s; }
+        .testi-img { 
+            width: 100px; 
+            height: 100px; 
+            border-radius: 50%; 
+            background: #eee; 
+            margin: 0 auto 20px; 
+            overflow: hidden; 
+            border: 3px solid var(--coklat-susu);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .testi-img img { width: 100%; height: 100%; object-fit: cover; }
+        .testi-text { font-style: italic; font-size: 1.1rem; margin-bottom: 20px; }
+        .testi-author { font-weight: bold; color: var(--maroon); }
+        .testi-btn { margin-top: 30px; background: none; border: 1px solid var(--maroon); color: var(--maroon); padding: 10px 25px; cursor: pointer; border-radius: 5px; transition: 0.3s; }
+        .testi-btn:hover { background: var(--maroon); color: white; }
+
+        /* --- CTA --- */
+        .cta-section { background: var(--burgundy); color: white; text-align: center; }
+        .cta-card h3 { font-size: 2.5rem; margin-bottom: 20px; }
+
+        /* --- MODAL --- */
+        .modal { 
+            display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.85); backdrop-filter: blur(8px);
+        }
+        .modal-content { 
+            background: white; margin: 2% auto; padding: 30px 40px; width: 90%; max-width: 550px; 
+            border-radius: 20px; text-align: center; position: relative; animation: modalIn 0.4s ease;
+            max-height: 95vh; overflow-y: auto;
+        }
+        .close { position: absolute; right: 20px; top: 15px; font-size: 2rem; cursor: pointer; color: #aaa; }
+        
+        .form-group { margin-bottom: 12px; text-align: left; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 4px; font-size: 0.9rem; }
+        .form-group input, .form-group select, .form-group textarea { 
+            width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; font-size: 1rem;
+        }
+
+        /* --- SUCCESS MESSAGE --- */
+        .success-wrapper { display: none; text-align: center; padding: 40px 0; animation: fadeIn 0.5s ease; }
+        .success-wrapper p { font-size: 1.1rem; line-height: 1.8; color: var(--text-dark); margin: 0; white-space: pre-line; }
+
+        /* --- DONATION COMPONENTS --- */
+        .donation-input-box {
+            background: #f8f8f8;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border: 2px solid #eee;
+        }
+        .donation-display {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--maroon);
+            margin-bottom: 10px;
+            min-height: 3rem;
+        }
+        .numpad {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .num-btn {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 15px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .num-btn:active { background: #eee; transform: scale(0.95); }
+        .num-btn.delete { color: #ff4444; }
+        
+        .qr-display {
+            display: none;
+            text-align: center;
+            padding: 20px 0;
+            animation: fadeIn 0.5s ease;
+        }
+        .qr-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin: 20px 0;
+            border: 4px solid var(--coklat-susu);
+        }
+
+        /* --- FOOTER --- */
+        footer { background: #1a0000; color: white; padding: 50px 10% 20px; text-align: center; }
+        .footer-social { margin: 20px 0; font-size: 0.9rem; opacity: 0.7; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes modalIn { from { opacity: 0; transform: translateY(-50px); } to { opacity: 1; transform: translateY(0); } }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.4rem; }
+            section { padding: 60px 5%; }
+            .founder-grid { gap: 30px; }
+            nav ul { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="logo-container">
+            <img src="Logo ThinkClass.jpeg" alt="Logo ThinkClass" class="nav-logo-img">
+            <div class="logo">Think<span>Class</span></div>
+        </div>
+        <ul>
+            <li><a href="#mengenal">Tentang</a></li>
+            <li><a href="#founder">Founder</a></li>
+            <li><a href="#dokumentasi">Kegiatan</a></li>
+            <li><a href="#testimoni">Testimoni</a></li>
+            <li><a href="javascript:void(0)" onclick="openModal('registerModal')" class="btn-small">Daftar</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Ruang publik sehat dimulai dari mengkaji isu, melahirkan karya</h1>
+            <h2>ThinkClass membiasakan berpikir kritis di tengah banjir informasi</h2>
+            <p>Kami membantu pelajar SMA memilih fakta, membangun argumentasi logis, dan menyampaikannya melalui karya tulis artikel populer hingga publikasi resmi.</p>
+            <div class="hero-btns">
+                <button onclick="openModal('registerModal')" class="btn-primary">Daftarkan Sekolahmu</button>
+                <button onclick="openModal('donationModal')" class="btn-secondary">Dukung Kami</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- TABS SECTION -->
+    <section id="mengenal">
+        <h3 class="section-title">Mengenal ThinkClass</h3>
+        <div class="tab-container">
+            <div class="tab-menu">
+                <button class="tab-link active" onclick="openTab(event, 'urgensi')">URGENSI</button>
+                <button class="tab-link" onclick="openTab(event, 'solusi')">SOLUSI</button>
+                <button class="tab-link" onclick="openTab(event, 'metode')">METODE</button>
+                <button class="tab-link" onclick="openTab(event, 'dampak')">DAMPAK</button>
+                <button class="tab-link" onclick="openTab(event, 'benefit')">BENEFIT</button>
+            </div>
+
+            <div id="urgensi" class="tab-content active">
+                <h4>Urgensi Literasi Kritis</h4>
+                <p>Di era banjir informasi, kemampuan membedakan fakta dan opini bukan lagi sekadar keahlian tambahan, melainkan kebutuhan dasar untuk menjaga ekosistem digital yang sehat.</p>
+                <ul style="margin-top:20px; padding-left:20px;">
+                    <li>Normalisasi <em>hate speech</em> di kalangan remaja.</li>
+                    <li>Kurangnya filter etika dalam berkomentar di media sosial.</li>
+                    <li>Rendahnya minat verifikasi data sebelum menyebarkan informasi.</li>
+                </ul>
+            </div>
+
+            <div id="solusi" class="tab-content">
+                <h4>Solusi Edukatif</h4>
+                <p>ThinkClass hadir sebagai jembatan antara kurikulum sekolah dan realitas digital. Kami menyediakan modul pelatihan nalar yang relevan dengan tren isu terkini.</p>
+            </div>
+
+            <div id="metode" class="tab-content">
+                <h4>Metode Pembelajaran</h4>
+                <p>Pendekatan kami bersifat <strong>Human-Centered</strong> dan <strong>Project-Based</strong>. Siswa diajak untuk menulis artikel populer yang akan dipublikasikan di portal sekolah dan mitra kami.</p>
+            </div>
+
+            <div id="dampak" class="tab-content">
+                <h4>Dampak Jangka Panjang</h4>
+                <p>Kami menargetkan lahirnya generasi pelajar yang memiliki kedewasaan intelektual dalam menanggapi perbedaan pendapat di ruang publik.</p>
+            </div>
+
+            <div id="benefit" class="tab-content">
+                <div class="benefit-grid">
+                    <div class="benefit-col">
+                        <h5>Untuk Siswa</h5>
+                        <p>Meningkatkan skill berpikir kritis, melatih menulis artikel populer, dan menambah kepercayaan diri.</p>
+                    </div>
+                    <div class="benefit-col">
+                        <h5>Untuk Sekolah</h5>
+                        <p>Penguatan budaya literasi sekolah dan mendukung sekolah dengan adanya publikasi karya siswa.</p>
+                    </div>
+                    <div class="benefit-col">
+                        <h5>Untuk Mentor</h5>
+                        <p>Pengalaman mengajar berbasis isu aktual dan kontribusi nyata pada generasi muda.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOUNDER SECTION -->
+    <section id="founder" class="founder-section">
+        <h3 class="section-title">The Founders</h3>
+        <div class="founder-grid">
+            
+            <!-- Founder 1: Putri Khairani Lubis -->
+            <div class="founder-card">
+                <div class="founder-frame">
+                    <div class="founder-image-container">
+                        <img src="kaira3%20JPG.jpeg" alt="Putri Khairani Lubis">
+                    </div>
+                </div>
+                <div class="founder-info">
+                    <h4>Putri Khairani Lubis</h4>
+                    <span>Co-Founder</span>
+                </div>
+            </div>
+
+            <!-- Founder 2: Oliviani Salsabila -->
+            <div class="founder-card">
+                <div class="founder-frame">
+                    <div class="founder-image-container">
+                        <img src="PAS%20FOTO%20JPG.jpg" alt="Oliviani Salsabila">
+                    </div>
+                </div>
+                <div class="founder-info">
+                    <h4>Oliviani Salsabila</h4>
+                    <span>Founder & Visionary</span>
+                </div>
+            </div>
+
+        </div>
+        <div class="founder-desc" style="max-width: 800px; margin: 50px auto 0; text-align: center; font-style: italic; color: #555; line-height: 1.8;">
+            "Founder ThinkClass memiliki kepedulian mendalam pada literasi isu dan pendidikan kritis untuk membentuk generasi muda yang literat, beretika, and berdaya dalam menyampaikan aspirasi mereka melalui karya yang nyata."
+        </div>
+    </section>
+
+    <!-- DOKUMENTASI KEGIATAN -->
+    <section id="dokumentasi">
+        <h3 class="section-title">Dokumentasi Kegiatan</h3>
+        <div class="slider-wrapper">
+            <div class="slider-container" id="slider">
+                <div class="slide">
+                    <img src="pelajar%20korea.png" alt="Dokumentasi Pelajar Korea">
+                    <div class="slide-info">Focus Group Discussion</div>
+                </div>
+                <div class="slide">
+                    <img src="foto nulis .jpeg" alt="Latihan Menulis Respon Kritis">
+                    <div class="slide-info">Latihan Menulis Respon Kritis</div>
+                </div>
+                <div class="slide">
+                    <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=1000" alt="Debat Isu">
+                    <div class="slide-info">Publikasi karya siswa</div>
+                </div>
+            </div>
+            <div class="slider-nav">
+                <button class="slider-btn" onclick="moveSlider(-1)"><i data-lucide="chevron-left"></i></button>
+                <button class="slider-btn" onclick="moveSlider(1)"><i data-lucide="chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONI -->
+    <section id="testimoni">
+        <h3 class="section-title">Testimoni</h3>
+        <div class="testi-container">
+            <div id="testi-content">
+                <div class="testi-card">
+                    <div class="testi-img">
+                        <img src="Kepsek SMA Pancasila.png" alt="Bpk Rajih M.Pd">
+                    </div>
+                    <p class="testi-text">"ThinkClass membantu siswa kami menyusun argumen yang lebih akademis."</p>
+                    <div class="testi-author">Bpk Rajih M.Pd – Kepala Sekolah SMA Pancasila</div>
+                </div>
+            </div>
+            <button class="testi-btn" onclick="nextTesti()">Baca Testimoni Lainnya</button>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="cta-card">
+            <h3>Jadilah Bagian dari Revolusi Nalar</h3>
+            <p>Bawa ThinkClass ke sekolah Anda dan bantu siswa-siswi Anda menjadi agen perubahan di ruang publik digital.</p>
+            <button onclick="openModal('registerModal')" class="btn-primary">Daftarkan Sekolahmu Sekarang</button>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="logo">Think<span>Class</span></div>
+        <p>Membentuk Nalar, Melahirkan Karya.</p>
+        <div class="footer-social">
+            Instagram: @ThinkClass | WhatsApp: +85691182765
+        </div>
+        <p style="font-size: 0.8rem; margin-top: 20px; opacity: 0.5;">&copy; 2024 ThinkClass Indonesia. All Rights Reserved.</p>
+    </footer>
+
+    <!-- MODALS -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('registerModal')">&times;</span>
+            
+            <div id="formContainer">
+                <h3 style="margin-bottom:20px;">Daftarkan Sekolah Anda</h3>
+                <form id="regForm" onsubmit="handleRegistration(event)">
+                    <div class="form-group">
+                        <label>Nama Lengkap</label>
+                        <input type="text" id="regName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Jabatan</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label>No WhatsApp</label>
+                        <input type="tel" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Nama Sekolah</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Alamat Sekolah</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Sekolah</label>
+                        <input type="email" required>
+                    </div>
+                    <button type="submit" class="btn-primary" style="width:100%; margin-top: 10px;">Kirim Sekarang</button>
+                </form>
+            </div>
+
+            <div id="successMessage" class="success-wrapper">
+                <p>Terimakasih telah mengisi pendaftaran.
+                Silakan hubungi:
+                Kontak Person: Putri Khairani Lubis 
+                +6285691182765
+                IG: @ThinkClass</p>
+                <button onclick="closeModal('registerModal')" class="btn-primary" style="margin-top:25px; background: var(--coklat-susu); color: var(--burgundy);">Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- DONATION MODAL -->
+    <div id="donationModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('donationModal')">&times;</span>
+            
+            <!-- Step 1: Input Donation -->
+            <div id="donationFormContainer">
+                <h3 style="margin-bottom:20px;">Dukung Literasi Generasi Muda</h3>
+                
+                <div class="donation-input-box">
+                    <label style="display:block; font-size: 0.8rem; text-align: left; margin-bottom: 5px; color: #666;">Jumlah Kirim</label>
+                    <div class="donation-display" id="donationDisplay">Rp 0</div>
+                </div>
+
+                <div class="form-group">
+                    <label>Catatan Tambahan</label>
+                    <textarea id="donationNote" placeholder="Contoh: Donasi untuk program pelatihan artikel populer SMA" rows="2"></textarea>
+                </div>
+
+                <!-- Keyboard Angka -->
+                <div class="numpad">
+                    <button class="num-btn" onclick="pressNum('1')">1</button>
+                    <button class="num-btn" onclick="pressNum('2')">2</button>
+                    <button class="num-btn" onclick="pressNum('3')">3</button>
+                    <button class="num-btn" onclick="pressNum('4')">4</button>
+                    <button class="num-btn" onclick="pressNum('5')">5</button>
+                    <button class="num-btn" onclick="pressNum('6')">6</button>
+                    <button class="num-btn" onclick="pressNum('7')">7</button>
+                    <button class="num-btn" onclick="pressNum('8')">8</button>
+                    <button class="num-btn" onclick="pressNum('9')">9</button>
+                    <button class="num-btn" onclick="pressNum('000')">000</button>
+                    <button class="num-btn" onclick="pressNum('0')">0</button>
+                    <button class="num-btn delete" onclick="pressNum('del')"><i data-lucide="delete"></i></button>
+                </div>
+
+                <button onclick="showQRCode()" class="btn-primary" style="width:100%; margin-top: 25px;">Lanjut</button>
+            </div>
+
+            <!-- Step 2: QR Code -->
+            <div id="qrDisplayContainer" class="qr-display">
+                <h3>Scan QRIS Untuk Berdonasi</h3>
+                <p style="font-size: 0.9rem; margin-top: 5px;">Silakan selesaikan pembayaran melalui aplikasi e-wallet Anda.</p>
+                <img src="QR kaira.jpeg" alt="QR kaira.jpeg" class="qr-image">
+                <button onclick="closeModal('donationModal')" class="btn-primary" style="width:100%; background: var(--coklat-susu); color: var(--burgundy);">Selesai</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        // Donation Logic
+        let currentAmount = "0";
+        function pressNum(val) {
+            if (val === 'del') {
+                currentAmount = currentAmount.slice(0, -1);
+                if (currentAmount === "") currentAmount = "0";
+            } else {
+                if (currentAmount === "0") {
+                    currentAmount = val;
+                } else {
+                    currentAmount += val;
+                }
+            }
+            updateDonationDisplay();
+        }
+
+        function updateDonationDisplay() {
+            const formatted = new Intl.NumberFormat('id-ID').format(currentAmount);
+            document.getElementById('donationDisplay').innerText = `Rp ${formatted}`;
+        }
+
+        function showQRCode() {
+            if (currentAmount === "0" || currentAmount === "") {
+                alert("Silakan masukkan nominal donasi terlebih dahulu.");
+                return;
+            }
+            document.getElementById('donationFormContainer').style.display = 'none';
+            document.getElementById('qrDisplayContainer').style.display = 'block';
+        }
+
+        function handleRegistration(event) {
+            event.preventDefault();
+            document.getElementById('formContainer').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'block';
+        }
+
+        function openTab(evt, tabName) {
+            let i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) tabcontent[i].classList.remove("active");
+            tablinks = document.getElementsByClassName("tab-link");
+            for (i = 0; i < tablinks.length; i++) tablinks[i].classList.remove("active");
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        function openModal(id) { 
+            document.getElementById(id).style.display = "block";
+            if(id === 'registerModal') {
+                document.getElementById('formContainer').style.display = 'block';
+                document.getElementById('successMessage').style.display = 'none';
+                document.getElementById('regForm').reset();
+            }
+            if(id === 'donationModal') {
+                document.getElementById('donationFormContainer').style.display = 'block';
+                document.getElementById('qrDisplayContainer').style.display = 'none';
+                currentAmount = "0";
+                updateDonationDisplay();
+                document.getElementById('donationNote').value = "";
+            }
+        }
+        
+        function closeModal(id) { document.getElementById(id).style.display = "none"; }
+
+        let currentSlide = 0;
+        function moveSlider(direction) {
+            const slider = document.getElementById('slider');
+            const total = slider.children.length;
+            currentSlide = (currentSlide + direction + total) % total;
+            slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+
+        const testimonis = [
+            { 
+                text: "ThinkClass membantu siswa kami menyusun argumen yang lebih akademis.", 
+                author: "Bpk Rajih M.Pd – Kepala Sekolah SMA Pancasila",
+                img: "Kepsek SMA Pancasila.png"
+            },
+            { 
+                text: "Acaranya sangat seru, tidak seperti belajar di kelas biasa. Saya jadi lebih berani berpendapat.", 
+                author: "Rian – Siswa Kelas XI",
+                img: "Rian SMA.png"
+            }
+        ];
+
+        let currentTestiIndex = 0;
+        function nextTesti() {
+            const content = document.getElementById('testi-content');
+            currentTestiIndex = (currentTestiIndex + 1) % testimonis.length;
+            content.style.opacity = 0;
+            setTimeout(() => {
+                const card = content.querySelector('.testi-card');
+                card.querySelector('.testi-img img').src = testimonis[currentTestiIndex].img;
+                card.querySelector('.testi-img img').alt = testimonis[currentTestiIndex].author;
+                card.querySelector('.testi-text').innerText = `"${testimonis[currentTestiIndex].text}"`;
+                card.querySelector('.testi-author').innerText = testimonis[currentTestiIndex].author;
+                content.style.opacity = 1;
+            }, 300);
+        }
+
+        window.onclick = function(event) {
+            if (event.target.className === 'modal') event.target.style.display = "none";
+        }
+    </script>
+</body>
+</html>

@@ -548,7 +548,7 @@
         <div class="logo">Think<span>Class</span></div>
         <p>Membentuk Nalar, Melahirkan Karya.</p>
         <div class="footer-social">
-            Instagram: @ThinkClass | WhatsApp: +85691182765
+            Instagram: @ThinkClass | WhatsApp: +6285691182765
         </div>
         <p style="font-size: 0.8rem; margin-top: 20px; opacity: 0.5;">&copy; 2024 ThinkClass Indonesia. All Rights Reserved.</p>
     </footer>
@@ -609,11 +609,13 @@
             <div id="donationFormContainer">
                 <h3 style="margin-bottom:20px;">Dukung Literasi Generasi Muda</h3>
                 
+                <!-- Kolom jumlah kirim -->
                 <div class="donation-input-box">
                     <label style="display:block; font-size: 0.8rem; text-align: left; margin-bottom: 5px; color: #666;">Jumlah Kirim</label>
                     <div class="donation-display" id="donationDisplay">Rp 0</div>
                 </div>
 
+                <!-- Kolom catatan tambahan -->
                 <div class="form-group">
                     <label>Catatan Tambahan</label>
                     <textarea id="donationNote" placeholder="Contoh: Donasi untuk program pelatihan artikel populer SMA" rows="2"></textarea>
@@ -635,14 +637,15 @@
                     <button class="num-btn delete" onclick="pressNum('del')"><i data-lucide="delete"></i></button>
                 </div>
 
+                <!-- Tombol Lanjut -->
                 <button onclick="showQRCode()" class="btn-primary" style="width:100%; margin-top: 25px;">Lanjut</button>
             </div>
 
-            <!-- Step 2: QR Code -->
+            <!-- Step 2: QR Code (Lanjutan Tombol Lanjut) -->
             <div id="qrDisplayContainer" class="qr-display">
                 <h3>Scan QRIS Untuk Berdonasi</h3>
                 <p style="font-size: 0.9rem; margin-top: 5px;">Silakan selesaikan pembayaran melalui aplikasi e-wallet Anda.</p>
-                <img src="QR kaira.jpeg" alt="QR kaira.jpeg" class="qr-image">
+                <img src="QR Kaira.jpeg" alt="QR Kaira.jpeg" class="qr-image">
                 <button onclick="closeModal('donationModal')" class="btn-primary" style="width:100%; background: var(--coklat-susu); color: var(--burgundy);">Selesai</button>
             </div>
         </div>
